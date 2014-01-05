@@ -40,6 +40,7 @@ public class EmergencyStrober implements Runnable {
                     while(running){
                         // strobe lights
                         updateEmergencyStates(bridge, head);
+                        Log.w("JDUV", "Updated states, sleeping.");
                         Thread.sleep(BLINKY_INTERVAL);
                     }
                 } else {

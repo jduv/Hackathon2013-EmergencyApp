@@ -11,6 +11,10 @@ import com.philips.lighting.model.PHLightState;
 import com.slalom.dangerapp.R;
 import com.slalom.dangerapp.hue.EmergencyStrober;
 import com.slalom.dangerapp.hue.SdkInitializer;
+import android.widget.ImageButton;
+import android.media.MediaPlayer;
+import android.media.AudioManager;
+import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,27 +34,26 @@ public class HomeView extends Activity {
         final EmergencyStrober strober = new EmergencyStrober(sdk);
         final ThreadWrapper wrapper = new ThreadWrapper();
 
-        final Button initLights = (Button) findViewById(R.id.init_lights);
-        initLights.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                clearLights(sdk, BLUE);
-            }
-        });
+        final MediaPlayer player = MediaPlayer.create(this, R.raw.help);
 
-        final Button blinkyButton = (Button) findViewById(R.id.blinkyon);
+        final ImageButton blinkyButton = (ImageButton) findViewById(R.id.blinkyon);
         blinkyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                if(!blinky) {
+                if(!blinky && !wrapper.isThreadAlive()) {
                     blinky = true;
                     Thread t = new Thread(strober);
                     wrapper.setWrapped(t);
                     t.start();
+
+                    AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 20, 0);
+                    player.start();
                 }
             }
         });
 
-        final Button noBlinkyButton = (Button) findViewById(R.id.blinkyoff);
+        final ImageButton noBlinkyButton = (ImageButton) findViewById(R.id.blinkyoff);
         noBlinkyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
@@ -63,6 +66,13 @@ public class HomeView extends Activity {
                 } catch (InterruptedException ie) {
                     // Nothing to do really.
                 }
+            }
+        });
+
+        final Button initLights = (Button) findViewById(R.id.init_lights);
+        initLights.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                clearLights(sdk, BLUE);
             }
         });
     }
@@ -100,6 +110,10 @@ public class HomeView extends Activity {
 
         public void setWrapped(Thread toWrap) {
             this.wrapped = toWrap;
+        }
+
+        public boolean isThreadAlive() {
+            return this.wrapped != null && this.wrapped.isAlive();
         }
     }
 }
