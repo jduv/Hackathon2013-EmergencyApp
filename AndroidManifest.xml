@@ -10,6 +10,7 @@
     <application android:icon="@drawable/appicon_36" android:label="@string/app_name">
         <activity android:name="com.slalom.dangerapp.views.HomeView"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
