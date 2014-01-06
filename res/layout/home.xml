@@ -1,42 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:id="@+id/home_view"
               android:background="#FFFFFF">
-
-        <ImageButton
-                android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_height="@android:dimen/notification_large_icon_height"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent">
+            <View
                 android:layout_height="fill_parent"
+                android:layout_width="0dp"
+                android:layout_weight=".25" />
+            <ImageView
+                android:id="@+id/app_logo"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/header_logo"/>
+            <View
+                android:layout_height="fill_parent"
+                android:layout_width="0dp"
+                android:layout_weight=".25" />
+        </LinearLayout>
+        <View
+            android:layout_height="3dp"
+            android:layout_width="fill_parent"
+            android:background="@android:color/holo_red_dark" />
+        <View
+            android:layout_height="2dp"
+            android:layout_width="fill_parent"
+            android:background="#44111111"
+            android:layout_marginBottom="10dp"/>
+        <LinearLayout
+            android:id="@+id/button_holder"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".75"
+            android:weightSum="1"
+            android:visibility="gone"
+            android:orientation="vertical">
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight=".33"
                 android:text="Emergency"
-                android:id="@+id/blinkyon"
+                android:id="@+id/emergency_button"
                 android:singleLine="true"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:src="@drawable/button_security"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:layout_margin="10dp"/>
+        <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".33"
+                android:text="Medical"
+                android:id="@+id/medical_button"
+                android:layout_gravity="center"
+                android:singleLine="true"
                 android:src="@drawable/button_medical"
                 android:scaleType="fitCenter"
-                android:background="@null"
-                android:padding="5dp"/>
+                android:background="@android:color/transparent"
+                android:layout_margin="10dp"/>
         <ImageButton
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".33"
                 android:text="Clear"
-                android:id="@+id/blinkyoff"
+                android:id="@+id/fire_button"
                 android:layout_gravity="center"
                 android:singleLine="true"
-                android:layout_weight="1"
+                android:src="@drawable/button_fire"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/dialog_holder"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".75"
+            android:weightSum="1"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_height="0dp"
+                android:layout_width="fill_parent"
+                android:layout_weight=".50"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/status_medical"
+                android:layout_margin="20dp"/>
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".33"
+                android:text="Clear"
+                android:id="@+id/clear_button"
+                android:layout_gravity="center"
+                android:singleLine="true"
                 android:src="@drawable/button_clear"
                 android:scaleType="fitCenter"
-                android:background="@null"
-                android:padding="5dp"/>
-        <Button
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:text="Initialize"
-                android:id="@+id/init_lights"
-                android:singleLine="true"
-                android:layout_weight="1"
-                android:layout_gravity="center"/>
+                android:background="@android:color/transparent"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
 </LinearLayout>
