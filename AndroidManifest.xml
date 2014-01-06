@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application android:icon="@drawable/appicon_36" android:label="@string/app_name">
-        <activity android:name="com.slalom.dangerapp.views.HomeView" android:label="Rescue Route">
+        <activity android:name="com.slalom.dangerapp.views.HomeView" android:label="Rescue Route"c>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

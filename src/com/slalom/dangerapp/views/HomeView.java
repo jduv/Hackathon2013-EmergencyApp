@@ -29,7 +29,8 @@ public class HomeView extends Activity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.home);
 
-        this.initializer = new SdkInitializer(getApplicationContext());
+        // pass ip into sdk initializer if you want to control it
+        this.initializer = new SdkInitializer();
         final PHHueSDK sdk = initializer.getConnectedSdk();
         final EmergencyStrober strober = new EmergencyStrober(sdk);
         final ThreadWrapper wrapper = new ThreadWrapper();

@@ -1,25 +1,28 @@
 package com.slalom.dangerapp.hue;
 
-import android.content.Context;
 import com.philips.lighting.hue.sdk.PHAccessPoint;
+import com.philips.lighting.hue.sdk.PHBridgeSearchManager;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.hue.sdk.PHSDKListener;
 import com.philips.lighting.model.PHBridge;
-import com.philips.lighting.hue.sdk.PHBridgeSearchManager;
 
 import java.util.List;
 
 public class SdkInitializer {
     private final static String DEVICE_NAME = "dangerapp";
     private final static String PREAUTHD_USER = "dangerapp0";
-    private final static String BRIDGE_IP = "192.168.1.145";
+    private final static String BRIDGE_IP = "10.138.116.123";
     private final PHAccessPoint accessPoint = new PHAccessPoint();
     private PHHueSDK sdk;
 
-    public SdkInitializer(Context context) {
+    public SdkInitializer() {
+        this(BRIDGE_IP);
+    }
+
+    public SdkInitializer(String bridgeIp) {
         this.accessPoint.setUsername(PREAUTHD_USER);
         //this.accessPoint.setMacAddress(this.getMacAddress());
-        this.accessPoint.setIpAddress(BRIDGE_IP);
+        this.accessPoint.setIpAddress(bridgeIp);
     }
 
     public PHHueSDK getConnectedSdk() {
