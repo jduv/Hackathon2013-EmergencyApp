@@ -6,6 +6,9 @@
         <option name="UPDATE_PROPERTY_FILES" value="true" />
       </configuration>
     </facet>
+    <facet type="android" name="Android2">
+      <configuration />
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -24,6 +27,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="huelocalsdk" level="project" />
+    <orderEntry type="library" name="sdkresources" level="project" />
     <orderEntry type="library" name="huelocalsdk" level="project" />
     <orderEntry type="library" name="sdkresources" level="project" />
   </component>

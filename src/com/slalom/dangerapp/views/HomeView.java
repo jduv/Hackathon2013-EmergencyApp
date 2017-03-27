@@ -15,6 +15,8 @@ import android.widget.ImageButton;
 import android.media.MediaPlayer;
 import android.media.AudioManager;
 import android.content.Context;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +39,20 @@ public class HomeView extends Activity {
 
         final MediaPlayer player = MediaPlayer.create(this, R.raw.help);
 
-        final ImageButton blinkyButton = (ImageButton) findViewById(R.id.blinkyon);
-        blinkyButton.setOnClickListener(new View.OnClickListener() {
+        final ImageButton medicalButton = (ImageButton) findViewById(R.id.medical_button);
+        final ImageButton fireButton = (ImageButton) findViewById(R.id.fire_button);
+        final ImageButton emergencyButton = (ImageButton) findViewById(R.id.emergency_button);
+        final ImageButton clearButton = (ImageButton) findViewById(R.id.clear_button);
+
+        final ImageView app_logo = (ImageView)findViewById(R.id.app_logo);
+
+        final LinearLayout buttonHolder = (LinearLayout)findViewById(R.id.button_holder);
+        final LinearLayout dialogHolder = (LinearLayout)findViewById(R.id.dialog_holder);
+
+        buttonHolder.setVisibility(View.VISIBLE);
+        dialogHolder.setVisibility(View.GONE);
+
+        medicalButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
                 if(!blinky && !wrapper.isThreadAlive()) {
@@ -51,11 +65,14 @@ public class HomeView extends Activity {
                     audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 20, 0);
                     player.start();
                 }
+
+                buttonHolder.setVisibility(View.GONE);
+                dialogHolder.setVisibility(View.VISIBLE);
             }
         });
 
-        final ImageButton noBlinkyButton = (ImageButton) findViewById(R.id.blinkyoff);
-        noBlinkyButton.setOnClickListener(new View.OnClickListener() {
+
+        clearButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
                     if(blinky && wrapper.getWrapped() != null) {
@@ -67,11 +84,13 @@ public class HomeView extends Activity {
                 } catch (InterruptedException ie) {
                     // Nothing to do really.
                 }
+
+                buttonHolder.setVisibility(View.VISIBLE);
+                dialogHolder.setVisibility(View.GONE);
             }
         });
 
-        final Button initLights = (Button) findViewById(R.id.init_lights);
-        initLights.setOnClickListener(new View.OnClickListener() {
+        app_logo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 clearLights(sdk, BLUE);
             }
